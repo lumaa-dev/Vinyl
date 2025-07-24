@@ -38,7 +38,7 @@ a.compact, button.compact {
   text-decoration: none;
 }
 
-.vinyl-list, .wish-list {
+.owned-list, .wish-list {
   display: flex;
   flex-direction: column;
   gap: 2em;

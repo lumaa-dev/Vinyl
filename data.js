@@ -1,9 +1,9 @@
-export const strs = {
+const strs = {
   en: { owned: "Owned Vinyl", wish: "Wish List" },
   fr: { owned: "Vinyles possédés", wish: "Vinyles souhaités" }
 };
 
-export const owned = [
+const owned = [
     {
         name: "Are We There Yet?",
         artist: "James Marriott",
@@ -121,7 +121,7 @@ export const owned = [
     }
 ];
 
-export const wish = [
+const wish = [
     {
         name: "Chromakopia",
         artist: "Tyler, The Creator",
