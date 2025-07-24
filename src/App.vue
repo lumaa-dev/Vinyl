@@ -252,18 +252,27 @@ export default {
     }
   },
   mounted() {
-    let href = document.location.href;
-    this.$data.lang = localStorage.getItem("lang") ?? "en";
-    if (!href.includes("?")) return;
-    /**@type {{ key: string, value: string }[]} */
-    let queries = href.split("?")[1].split(/&+/).map((queryStr) => { return { key: queryStr.split("=")[0], value: queryStr.split("=")[1] } });
+    // let href = document.location.href;
+    // try {
+    //   this.$data.lang = localStorage.getItem("lang") ?? "en";
+    // } catch (err) {
+    //   console.error(`Catched get localStorage: ${err}`);
+    //   this.$data.lang = "en";
+    // }
+    // if (!href.includes("?")) return;
+    // /**@type {{ key: string, value: string }[]} */
+    // let queries = href.split("?")[1].split(/&+/).map((queryStr) => { return { key: queryStr.split("=")[0], value: queryStr.split("=")[1] } });
 
-    let langQuery = queries.find(query => query.key == "l");
-    if (!["fr", "en"].includes(langQuery.value)) return;
-    console.log(`Lang: ${langQuery.value}`);
-    localStorage.setItem("lang", langQuery.value);
+    // let langQuery = queries.find(query => query.key == "l");
+    // if (!["fr", "en"].includes(langQuery.value)) return;
+    // console.log(`Lang: ${langQuery.value}`);
+    // try {
+    //   localStorage.setItem("lang", langQuery.value);
+    // } catch (err) {
+    //   console.error(`Catched set localStorage: ${err}`);
+    // }
     
-    this.$data.lang = langQuery.value;
+    // this.$data.lang = langQuery.value;
   }
 }
 </script>
