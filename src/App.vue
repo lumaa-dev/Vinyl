@@ -12,8 +12,9 @@
   </span>
   <span class="footer">
     <p>
-      Font used: <a href="https://www.tiktok.com/font" class="compact">TikTok Sans</a><br />
-      Website made by <a href="https://lumaa.fr/" class="compact">Lumaa</a>
+      All album covers shown have their rights to their authors or affiliated label<br />
+      <br />Font used: <a href="https://www.tiktok.com/font" class="compact">TikTok Sans</a>
+      <br />Website made by <a href="https://lumaa.fr/" class="compact">Lumaa</a>
     </p>
   </span>
 </template>
@@ -252,6 +253,7 @@ export default {
   },
   mounted() {
     let href = document.location.href;
+    this.$data.lang = localStorage.getItem("lang") ?? "en";
     if (!href.includes("?")) return;
     /**@type {{ key: string, value: string }[]} */
     let queries = href.split("?")[1].split(/&+/).map((queryStr) => { return { key: queryStr.split("=")[0], value: queryStr.split("=")[1] } });
@@ -259,6 +261,7 @@ export default {
     let langQuery = queries.find(query => query.key == "l");
     if (!["fr", "en"].includes(langQuery.value)) return;
     console.log(`Lang: ${langQuery.value}`);
+    localStorage.setItem("lang", langQuery.value);
     
     this.$data.lang = langQuery.value;
   }
