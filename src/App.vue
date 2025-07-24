@@ -1,5 +1,5 @@
 <template>
-  <span :class="$data.lang">
+  <div :class="$data.lang">
     <h1 id="owned">{{ $data.strs[$data.lang]["owned"] }}</h1>
     <div class="vinyl-list">
       <Vinyl :item="item" v-for="item in owned.sort((a, b) => b.ownDate > a.ownDate)" :key="item.img" />
@@ -9,7 +9,7 @@
     <div class="wish-list">
        <Vinyl :item="item" v-for="item in wish.sort((a, b) => a.priority > b.priority)" :key="item.img" />
     </div>
-  </span>
+  </div>
   <span class="footer">
     <p>
       All album covers shown have their rights to their authors or affiliated label<br />
@@ -252,27 +252,27 @@ export default {
     }
   },
   mounted() {
-    // let href = document.location.href;
-    // try {
-    //   this.$data.lang = localStorage.getItem("lang") ?? "en";
-    // } catch (err) {
-    //   console.error(`Catched get localStorage: ${err}`);
-    //   this.$data.lang = "en";
-    // }
-    // if (!href.includes("?")) return;
-    // /**@type {{ key: string, value: string }[]} */
-    // let queries = href.split("?")[1].split(/&+/).map((queryStr) => { return { key: queryStr.split("=")[0], value: queryStr.split("=")[1] } });
+    let href = document.location.href;
+    try {
+      this.$data.lang = localStorage.getItem("lang") ?? "en";
+    } catch (err) {
+      console.error(`Catched get localStorage: ${err}`);
+      this.$data.lang = "en";
+    }
+    if (!href.includes("?")) return;
+    /**@type {{ key: string, value: string }[]} */
+    let queries = href.split("?")[1].split(/&+/).map((queryStr) => { return { key: queryStr.split("=")[0], value: queryStr.split("=")[1] } });
 
-    // let langQuery = queries.find(query => query.key == "l");
-    // if (!["fr", "en"].includes(langQuery.value)) return;
-    // console.log(`Lang: ${langQuery.value}`);
-    // try {
-    //   localStorage.setItem("lang", langQuery.value);
-    // } catch (err) {
-    //   console.error(`Catched set localStorage: ${err}`);
-    // }
+    let langQuery = queries.find(query => query.key == "l");
+    if (!["fr", "en"].includes(langQuery.value)) return;
+    console.log(`Lang: ${langQuery.value}`);
+    try {
+      localStorage.setItem("lang", langQuery.value);
+    } catch (err) {
+      console.error(`Catched set localStorage: ${err}`);
+    }
     
-    // this.$data.lang = langQuery.value;
+    this.$data.lang = langQuery.value;
   }
 }
 </script>

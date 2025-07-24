@@ -1,7 +1,15 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  publicPath: './',
   transpileDependencies: true,
-  productionSourceMap: true,
-  filenameHashing: true,
+  configureWebpack: {
+    output: {
+      environment: {
+        arrowFunction: false, // Safari 10–11
+        const: false,
+        destructuring: false,
+        forOf: false,
+        module: false,
+      },
+    },
+  },
 })
