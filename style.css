@@ -75,7 +75,6 @@ a.compact, button.compact {
 .vinyl > span {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: left;
   align-items: start;
   gap: 10px;
@@ -110,6 +109,7 @@ a.compact, button.compact {
 .actions {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
