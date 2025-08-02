@@ -1,0 +1,36 @@
+name: Auto-close PRs
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR author
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prUser = context.payload.pull_request.user.login;
+            const repoOwner = context.repo.owner;
+
+            if (prUser !== repoOwner) {
+              core.info(`Closing PR from @${prUser} (not the repo owner).`);
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: "This repository does not accept pull requests, thanks for your contribution anyway."
+              });
+
+              await github.rest.pulls.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.payload.pull_request.number,
+                state: "closed"
+              });
+            } else {
+              core.info(`PR opened by the repo owner. No action taken.`);
+            }
